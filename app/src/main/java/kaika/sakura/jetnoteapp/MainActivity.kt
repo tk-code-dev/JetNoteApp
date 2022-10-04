@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import kaika.sakura.jetnoteapp.screen.NoteScreen
 import kaika.sakura.jetnoteapp.ui.theme.JetNoteAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,13 +23,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
+                    NoteScreen()
                 }
             }
         }
     }
 }
-
 
 
 @Preview(showBackground = true)
