@@ -1,5 +1,6 @@
 package kaika.sakura.jetnoteapp.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,7 @@ fun NoteScreen(
     var description by remember {
         mutableStateOf("")
     }
+    val context = LocalContext.current
 
     Column(modifier = Modifier.padding(3.dp)) {
         TopAppBar(title = {
@@ -70,16 +73,19 @@ fun NoteScreen(
                 })
             NoteButton(text = "Save", onClick = {
                 if (title.isNotEmpty() && description.isNotEmpty()) {
-                    //  save/add to the list
+                    onAddNote(Note(title = title, description = description))
                     title = ""
                     description = ""
+                    Toast.makeText(context, "Note Added", Toast.LENGTH_SHORT).show()
                 }
             })
         }
         Divider(modifier = Modifier.padding(12.dp))
         LazyColumn {
             items(notes) { note ->
-                NoteRow(note = note, onNOteClicked = {})
+                NoteRow(note = note, onNoteClicked = {
+                    onRemoveNote(note)
+                })
             }
         }
     }
@@ -89,7 +95,7 @@ fun NoteScreen(
 fun NoteRow(
     modifier: Modifier = Modifier,
     note: Note,
-    onNOteClicked: (Note) -> Unit
+    onNoteClicked: (Note) -> Unit
 ) {
     Surface(
         modifier
@@ -99,7 +105,7 @@ fun NoteRow(
     ) {
         Column(
             modifier
-                .clickable { }
+                .clickable { onNoteClicked(note) }
                 .padding(horizontal = 12.dp, vertical = 8.dp),
             horizontalAlignment = Alignment.Start) {
             Text(text = note.title, style = MaterialTheme.typography.subtitle2)
