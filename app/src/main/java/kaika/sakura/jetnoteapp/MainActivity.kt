@@ -11,15 +11,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kaika.sakura.jetnoteapp.data.NotesDataSource
 import kaika.sakura.jetnoteapp.model.Note
 import kaika.sakura.jetnoteapp.screen.NoteScreen
 import kaika.sakura.jetnoteapp.screen.NoteViewModel
 import kaika.sakura.jetnoteapp.ui.theme.JetNoteAppTheme
 
+@ExperimentalComposeUiApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

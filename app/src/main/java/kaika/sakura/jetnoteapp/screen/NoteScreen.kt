@@ -84,7 +84,7 @@ fun NoteScreen(
         LazyColumn {
             items(notes) { note ->
                 NoteRow(note = note, onNoteClicked = {
-                    onRemoveNote(note)
+                    onRemoveNote(it)
                 })
             }
         }
@@ -110,10 +110,10 @@ fun NoteRow(
             horizontalAlignment = Alignment.Start) {
             Text(text = note.title, style = MaterialTheme.typography.subtitle2)
             Text(text = note.description, style = MaterialTheme.typography.subtitle1)
-            Text(
-                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, dd MMM")),
-                style = MaterialTheme.typography.caption
-            )
+//            Text(
+//                text = note.entryDate.format(DateTimeFormatter.ofPattern("EEE, dd MMM")),
+//                style = MaterialTheme.typography.caption
+//            )
         }
     }
 }
