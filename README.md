@@ -1,3 +1,3 @@
 # JetNoteApp
 
-This is a demo application of jetpack compose.
+This is a demo application using jetpack compose.
